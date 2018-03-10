@@ -1,10 +1,19 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const keys = require('./config/keys');
+require('./services/passport');
+
+// const authRoutes = require('./routes/authRoutes');
+
+mongoose.connect(keys.mongoURI);
+
 const app = express();
 
-app.get('/', (req, res) => {
-	res.send({ bye: 'There' });
-});
-// route handler
+// authRoutes(app);
+
+require('./routes/authRoutes')(app);
+// immediately invoked function
+// refactored authRoutes
 
 const PORT = process.env.PORT || 5000;
 // environment variables that are set in the underlying runtime that node is running on top off
