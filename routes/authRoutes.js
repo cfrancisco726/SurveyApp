@@ -18,7 +18,7 @@ module.exports = app => {
 	});
 
 	app.get('/api/current_user', (req, res) => {
-		req.send(req.session);
+		res.send(req.session);
 		// cookie session extracts cookie data but assigns to req.session property
 		//  passport is looking at req.session
 		// pulls out relevant data and passes onto deserializeUser
