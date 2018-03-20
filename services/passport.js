@@ -39,29 +39,24 @@ passport.use(
 			// route the user gets sent to after they are granted permission
 			proxy: true
 		},
-		(accessToken, refreshToken, profile, done) => {
-			User.findOne({ googleId: profile.id })
-				// find first user in class with googleid of profile.id
-				// we are inititiating an asynchronous action
-				// query returns a promise
-				.then(existingUser => {
-					// model instance that reps the user who was found
-					if (existingUser) {
-						// we already have a record with a given profile ID
-						done(null, existingUser);
-						// null means no error, return existingUser record
-					} else {
-						// we dont have a user record with this ID, make a new record
-						new User({ googleId: profile.id })
-							.save()
-							// creates new instance of user or a mongo model instance
-							// .save to persist to db
-							.then(user => done(null, user));
-						// another model instance but both represent model
-						// by convention make use of the one provided in the promise callback in case there are any changes
-					}
-				});
-
+		async (accessToken, refreshToken, profile, done) => {
+			const existingUser = await User.findOne({ googleId: profile.id });
+			// find first user in class with googleid of profile.id
+			// we are inititiating an asynchronous action
+			// query returns a promise
+			// model instance that reps the user who was found
+			if (existingUser) {
+				// we already have a record with a given profile ID
+				return done(null, existingUser);
+			}
+			// null means no error, return existingUser record
+			// we dont have a user record with this ID, make a new record
+			const user = await new User({ googleId: profile.id }).save();
+			// creates new instance of user or a mongo model instance
+			// .save to persist to db
+			done(null, user);
+			// another model instance but both represent model
+			// by convention make use of the one provided in the promise callback in case there are any changes
 			// console.log('accessToken', accessToken);
 			// console.log('refreshToken', refreshToken);
 			// console.log('profile', profile);
