@@ -7,6 +7,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 require('./models/User');
+require('./models/Survey');
 require('./services/passport');
 // need to require passport to atleast 1 location or else wont get executed
 
@@ -37,6 +38,7 @@ require('./routes/authRoutes')(app);
 // immediately invoked function
 // refactored authRoutes
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
 	// express will serve up production assets
