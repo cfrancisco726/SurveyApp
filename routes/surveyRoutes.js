@@ -1,3 +1,6 @@
+const _ = require('lodash');
+const Path = require('path-parser');
+const { URL } = require('url');
 const mongoose = require('mongoose');
 // sometimes running tests with mongoose will sometimes result in complaints if you attempt to require in model file multiple times
 const requireLogin = require('../middlewares/requireLogin');
@@ -9,8 +12,81 @@ const Survey = mongoose.model('surveys');
 // mongoose model class
 
 module.exports = app => {
-	app.get('/api/surveys/thanks', (req, res) => {
+	app.get('/api/surveys/:surveyId/:choice', (req, res) => {
 		res.send('Thanks for voting');
+	});
+
+	// app.post('/api/surveys/webhooks', (req, res) => {
+	// 	const events = _.map(req.body, event => {
+	// 		const pathname = new URL(event.url).pathname;
+	// 		const p = new Path('/api/surveys/:surveyId/:choice');
+	// 		// extract from url
+	// 		const match = p.test(pathname);
+	// 		if (match) {
+	// 			return {
+	// 				email: event.email,
+	// 				surveyId: match.surveyId,
+	// 				choice: match.choice
+	// 			};
+	// 		}
+	// 	});
+	// });
+
+	// app.post('/api/surveys/webhooks', (req, res) => {
+	// 	const p = new Path('/api/surveys/:surveyId/:choice');
+	//
+	// 	const events = _.map(req.body, ({ email, url }) => {
+	// 		const match = p.test(new URL(url).pathname);
+	// 		// extract from url
+	// 		if (match) {
+	// 			return {
+	// 				email,
+	// 				surveyId: match.surveyId,
+	// 				choice: match.choice
+	// 			};
+	// 		}
+	// 	});
+
+	app.post('/api/surveys/webhooks', (req, res) => {
+		const p = new Path('/api/surveys/:surveyId/:choice');
+
+		const events = _.chain(req.body)
+			.map(({ email, url }) => {
+				const match = p.test(new URL(url).pathname);
+				if (match) {
+					return {
+						email,
+						surveyId: match.surveyId,
+						choice: match.choice
+					};
+				}
+			})
+			.compact()
+			// compact removes undefined elements
+			.uniqBy('email', 'surveyId')
+			// eliminates dupes
+			.each(({ surveyId, email, choice }) => {
+				Survey.updateOne(
+					{
+						_id: surveyId,
+						// mongoose understands id but you need _ for mongo
+						recipients: {
+							$elemMatch: { email: email, responded: false }
+						}
+					},
+					{
+						$inc: { [choice]: 1 },
+						$set: { 'recipients.$.responded': true },
+						lastResponded: new Date()
+					}
+				).exec();
+			})
+			.value();
+
+		console.log(events);
+
+		res.send({});
+		// to tell sendgrid everything is ok
 	});
 
 	app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
