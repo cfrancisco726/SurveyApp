@@ -32,6 +32,9 @@ const User = mongoose.model('users');
 
 passport.use(
 	new GoogleStrategy(
+		// creates instance of google strategy and pass in some configuration
+		// passport use google strategy
+
 		{
 			clientID: keys.googleClientID,
 			clientSecret: keys.googleClientSecret,
@@ -52,7 +55,7 @@ passport.use(
 			// null means no error, return existingUser record
 			// we dont have a user record with this ID, make a new record
 			const user = await new User({ googleId: profile.id }).save();
-			// creates new instance of user or a mongo model instance
+			// creates new instance of user or a mongo model instance with googleId property
 			// .save to persist to db
 			done(null, user);
 			// another model instance but both represent model

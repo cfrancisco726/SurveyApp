@@ -21,6 +21,7 @@ app.use(
 	// each app.use wires up middleware
 	// middleware - functions that modify incoming request to our app before theyre sent off to route handlers
 	cookieSession({
+		// pulls data out of the cookie
 		maxAge: 30 * 24 * 60 * 1000,
 		keys: [keys.cookieKey]
 		// allows to provide multiple keys
@@ -35,7 +36,7 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 // const authRoutes = require('./routes/authRoutes');
 // authRoutes(app);
-// immediately invoked function
+// returns a function and immediately invoked
 // refactored authRoutes
 require('./routes/billingRoutes')(app);
 require('./routes/surveyRoutes')(app);
@@ -44,8 +45,8 @@ if (process.env.NODE_ENV === 'production') {
 	// express will serve up production assets
 	// like our main.js file or main.css file
 	app.use(express.static('client/build'));
-	// if theres a get request thats not found in the routes above search in client build directory main.js
-	// if found respond with above
+	// search for file in client/build/static first
+
 
 	// express will serve up the index.html file
 	// if it doesn't recognize the route

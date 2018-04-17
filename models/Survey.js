@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+// const Schema  = mongoose.Schema - destructured
 const RecipientSchema = require('./Recipient');
 
 const surveySchema = new Schema({

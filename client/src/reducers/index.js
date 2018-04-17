@@ -6,6 +6,7 @@ import surveysReducer from './surveysReducer';
 
 export default combineReducers({
 	auth: authReducer,
+	// auth piece of state is being manufactured by the authReducer
 	form: reduxForm,
 	surveys: surveysReducer
 });
