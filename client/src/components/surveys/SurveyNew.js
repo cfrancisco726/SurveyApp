@@ -6,6 +6,11 @@ import SurveyForm from './SurveyForm';
 import SurveyFormReview from './SurveyFormReview';
 
 class SurveyNew extends Component {
+	// 	constructor(props){
+	//     super(props)
+	//     this.state = {new: true}
+	// 	} classic way to initialize state
+
 	state = { showFormReview: false };
 
 	renderContent() {

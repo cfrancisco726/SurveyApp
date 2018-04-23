@@ -5,7 +5,7 @@ const keys = require('../config/keys');
 class Mailer extends helper.Mail {
 	// Mailer class inherited from Mail object
 	constructor({ subject, recipients }, content) {
-		// content is html string from survey(template)
+		// content is html string from surveyTemplate
 		// no curly braces needed for content because we are not destructuring
 		super();
 
@@ -54,6 +54,7 @@ class Mailer extends helper.Mail {
 	}
 
 	async send() {
+		// communicates mailer to sendgrid api
 		const request = await this.sgApi.emptyRequest({
 			method: 'POST',
 			path: '/v3/mail/send',

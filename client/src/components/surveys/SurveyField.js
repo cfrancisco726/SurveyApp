@@ -6,7 +6,7 @@ import React from 'react';
 export default ({ input, label, meta: { error, touched } }) => {
 	// pulls off input property from props and assigns to variable input
 	// console.log(props.input);
-	// input contains all callbacks
+	// input contains all callbacks (onBlur, onChange, etc)
 	// console.log(meta)
 
 	return (
@@ -18,7 +18,7 @@ export default ({ input, label, meta: { error, touched } }) => {
 			</div>
 		</div>
 	);
-	// {...input} includes all event handlers ie onBlur
+	// {...input} includes all event handlers ie onBlur={input.onBlur}
 	// pass in label prop
 	// if touched is true and error exists show error
 };

@@ -9,6 +9,7 @@ import * as actions from '../../actions';
 
 const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
 	const reviewFields = _.map(formFields, ({ name, label }) => {
+		// destructured off field object
 		return (
 			<div key={name}>
 				<label>{label}</label>
@@ -25,6 +26,8 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
 			</button>
 			<button
 				onClick={() => submitSurvey(formValues, history)}
+				// need to wrap in arrow function so that it doesn't get executed right away 
+				// call action creator
 				className="green btn-flat right white-text"
 			>
 				Send Survey
@@ -35,7 +38,8 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
 };
 
 function mapStateToProps(state) {
-	// console.log(state);
+	// console.log(state) returns auth and form reducer
+	// pull values out of our redux store
 	return { formValues: state.form.surveyForm.values };
 }
 export default connect(mapStateToProps, actions)(withRouter(SurveyFormReview));

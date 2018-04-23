@@ -50,4 +50,5 @@ export const fetchSurveys = () => async dispatch => {
 
 	dispatch({ type: FETCH_SURVEYS, payload: res.data });
 	// watch for fetch type and return list of surveys
+	// payload is array of all the surveys 
 };

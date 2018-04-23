@@ -14,6 +14,7 @@ module.exports = app => {
 	app.get('/api/surveys', requireLogin, requireCredits, async (req, res) => {
 		const surveys = await Survey.find({ _user: req.user.id }).select({
 			recipients: false
+			// do not return list of all recipients 
 		});
 
 		res.send(surveys);
@@ -55,11 +56,21 @@ module.exports = app => {
 	// 	});
 
 	app.post('/api/surveys/webhooks', (req, res) => {
+		// sendgrid post request after clicking email
+		// path set in sendgrid email settings
+		// need to extract data from yes or no click
+		// id and choice is sent to sendgrid in the url
+		// console.log(req.body);
 		const p = new Path('/api/surveys/:surveyId/:choice');
+		// extract a certain path
 
 		const events = _.chain(req.body)
+			// can chain on many lodash helpers
 			.map(({ email, url }) => {
 				const match = p.test(new URL(url).pathname);
+				// extracts path from URL for each event
+				// matcher to extract survey id and choice
+				// match will either be null or object
 				if (match) {
 					return {
 						email,
@@ -73,6 +84,7 @@ module.exports = app => {
 			.uniqBy('email', 'surveyId')
 			// eliminates dupes
 			.each(({ surveyId, email, choice }) => {
+				// passing in event but we only care about the following
 				Survey.updateOne(
 					{
 						_id: surveyId,
@@ -87,10 +99,12 @@ module.exports = app => {
 						lastResponded: new Date()
 					}
 				).exec();
+				// executes query
 			})
 			.value();
-
-		console.log(events);
+		// pull out underlying array
+		// no need for async await because were just updating data
+		// console.log(events);
 
 		res.send({});
 		// to tell sendgrid everything is ok
@@ -101,6 +115,7 @@ module.exports = app => {
 
 		const survey = new Survey({
 			title,
+			// title: title, es6
 			subject,
 			body,
 			// recipients: recipients.split(',').map(email => {
@@ -108,7 +123,7 @@ module.exports = app => {
 			// })
 			recipients: recipients.split(',').map(email => ({ email: email.trim() })),
 			// recipients: recipients.split(',').map(email => ({ email })
-			// wrap email with () to let js interpreter it is an object
+			// wrap email with () to let js interpreter it is a shortened object
 			// return email property email with email value
 			_user: req.user.id,
 			dateSent: Date.now()
@@ -121,14 +136,17 @@ module.exports = app => {
 		// second argument the html to show in email
 		try {
 			await mailer.send();
+			// sent to sendgrid api
 			// async, must wait till finish
 			// not only must we mark mailer send async but route handler as well
 			await survey.save();
+			// saved to db
 			req.user.credits -= 1;
 			const user = await req.user.save();
 			// whenever we save the user on req object the user is considered stale. need to save to const user
 			res.send(user);
-			// send back updated user model to show update credits
+			// send back updated user model inside our auth reducer to show update credits in header
+			// updates header
 		} catch (err) {
 			res.status(422).send(err);
 		}

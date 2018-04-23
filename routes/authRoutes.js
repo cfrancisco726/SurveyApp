@@ -4,7 +4,8 @@ module.exports = app => {
 	app.get(
 		'/auth/google',
 		passport.authenticate('google', {
-			scope: ['profile', 'email'] //asking google to give us access to profile and email info
+			scope: ['profile', 'email'], //asking google to give us access to profile and email info
+			prompt: 'select_account'
 		})
 	); //GoogleStrategy has an internal identifier of google
 

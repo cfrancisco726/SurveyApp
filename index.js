@@ -11,6 +11,7 @@ require('./models/Survey');
 require('./services/passport');
 // need to require passport to atleast 1 location or else wont get executed
 
+mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI);
 
 const app = express();
@@ -46,7 +47,6 @@ if (process.env.NODE_ENV === 'production') {
 	// like our main.js file or main.css file
 	app.use(express.static('client/build'));
 	// search for file in client/build/static first
-
 
 	// express will serve up the index.html file
 	// if it doesn't recognize the route
