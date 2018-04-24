@@ -12,6 +12,7 @@ const Survey = mongoose.model('surveys');
 // mongoose model class
 module.exports = app => {
 	app.get('/api/surveys', requireLogin, requireCredits, async (req, res) => {
+		console.log(req.body);
 		const surveys = await Survey.find({ _user: req.user.id }).select({
 			recipients: false
 			// do not return list of all recipients
