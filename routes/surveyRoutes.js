@@ -14,7 +14,7 @@ module.exports = app => {
 	app.get('/api/surveys', requireLogin, requireCredits, async (req, res) => {
 		const surveys = await Survey.find({ _user: req.user.id }).select({
 			recipients: false
-			// do not return list of all recipients 
+			// do not return list of all recipients
 		});
 
 		res.send(surveys);
