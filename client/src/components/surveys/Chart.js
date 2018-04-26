@@ -5,7 +5,30 @@ class Chart extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			chartData: props.chartData
+			chartData: {
+				labels: ['1', '2', '3', '4', '5'],
+				datasets: [
+					{
+						label: 'Ratings',
+						// data: [1, 2, 3, 6, 9],
+
+						// data: [
+						// 	{this.props.one},
+						// 	{this.props.survey.two},
+						// 	{this.props.survey.three},
+						// 	{this.props.survey.four},
+						// 	{this.props.survey.five}
+						// ],
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.6)',
+							'rgba(54, 162, 235, 0.6)',
+							'rgba(255, 206, 86, 0.6)',
+							'rgba(75, 192, 192, 0.6)',
+							'rgba(75, 192, 192, 0.6)'
+						]
+					}
+				]
+			}
 		};
 	}
 
