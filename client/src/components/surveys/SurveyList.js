@@ -1,13 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSurveys } from '../../actions';
+import Chart from './Chart';
 
 class SurveyList extends Component {
 	componentDidMount() {
-		// everytime component is rendered to screen 
 		this.props.fetchSurveys();
 	}
 
+	getChartData(survey) {
+		this.setState({
+			chartData: {
+				labels: ['1', '2', '3', '4', '5'],
+				datasets: [
+					{
+						label: 'Ratings',
+						data: [
+							survey.one,
+							survey.two,
+							survey.three,
+							survey.four,
+							survey.five
+						],
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.6)',
+							'rgba(54, 162, 235, 0.6)',
+							'rgba(255, 206, 86, 0.6)',
+							'rgba(75, 192, 192, 0.6)',
+							'rgba(153, 102, 255, 0.6)'
+						]
+					}
+				]
+			}
+		});
+	}
 	renderSurveys() {
 		return this.props.surveys.reverse().map(survey => {
 			return (
@@ -20,8 +46,8 @@ class SurveyList extends Component {
 						</p>
 					</div>
 					<div className="card-action">
-						<a>Yes: {survey.yes}</a>
-						<a>No: {survey.no}</a>
+						<a>One: {survey.one}</a>
+						<Chart chartData={survey} />
 					</div>
 				</div>
 			);
