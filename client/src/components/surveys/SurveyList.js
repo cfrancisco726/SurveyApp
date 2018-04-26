@@ -20,7 +20,6 @@ class SurveyList extends Component {
 						</p>
 					</div>
 					<div className="card-action">
-						<a>One: {survey.one}</a>
 						<Chart chartData={survey} />
 					</div>
 				</div>

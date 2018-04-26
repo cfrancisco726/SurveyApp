@@ -9,7 +9,7 @@ class Chart extends Component {
 				labels: ['1', '2', '3', '4', '5'],
 				datasets: [
 					{
-						label: 'Ratings',
+						label: 'ratings',
 						data: [
 							this.props.chartData.one,
 							this.props.chartData.two,
@@ -18,12 +18,13 @@ class Chart extends Component {
 							this.props.chartData.five
 						],
 						backgroundColor: [
-							'rgba(255, 99, 132, 0.6)',
-							'rgba(54, 162, 235, 0.6)',
-							'rgba(255, 206, 86, 0.6)',
-							'rgba(75, 192, 192, 0.6)',
-							'rgba(153, 102, 255, 0.6)'
-						]
+							'rgba(12, 210, 228, 0.6)',
+							'rgba(12, 180, 228, 0.6)',
+							'rgba(12, 150, 228, 0.6)',
+							'rgba(12, 120, 228, 0.6)',
+							'rgba(12, 90, 228, 0.6)'
+						],
+						borderWidth: 3
 					}
 				]
 			}
@@ -33,7 +34,7 @@ class Chart extends Component {
 	static defaultProps = {
 		displayTitle: true,
 		displayLegend: true,
-		legendPosition: 'bottom'
+		textPosition: 'bottom'
 	};
 
 	render() {
@@ -42,13 +43,13 @@ class Chart extends Component {
 			<div className="chart">
 				<Bar
 					data={this.state.chartData}
-					width={100}
-					height={50}
+					width={50}
+					height={25}
 					options={{
 						title: {
 							display: this.props.displayTitle,
 							text: 'ratings',
-							fontSize: 50
+							fontSize: 20
 						},
 						legend: {
 							display: this.props.displayLegend,
