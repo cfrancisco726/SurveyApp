@@ -10,21 +10,19 @@ class Chart extends Component {
 				datasets: [
 					{
 						label: 'Ratings',
-						// data: [1, 2, 3, 6, 9],
-
-						// data: [
-						// 	{this.props.one},
-						// 	{this.props.survey.two},
-						// 	{this.props.survey.three},
-						// 	{this.props.survey.four},
-						// 	{this.props.survey.five}
-						// ],
+						data: [
+							this.props.chartData.one,
+							this.props.chartData.two,
+							this.props.chartData.three,
+							this.props.chartData.four,
+							this.props.chartData.five
+						],
 						backgroundColor: [
 							'rgba(255, 99, 132, 0.6)',
 							'rgba(54, 162, 235, 0.6)',
 							'rgba(255, 206, 86, 0.6)',
 							'rgba(75, 192, 192, 0.6)',
-							'rgba(75, 192, 192, 0.6)'
+							'rgba(153, 102, 255, 0.6)'
 						]
 					}
 				]
@@ -35,11 +33,11 @@ class Chart extends Component {
 	static defaultProps = {
 		displayTitle: true,
 		displayLegend: true,
-		legendPosition: 'bottom',
-		location: 'City'
+		legendPosition: 'bottom'
 	};
 
 	render() {
+		// console.log(this.props);
 		return (
 			<div className="chart">
 				<Bar
@@ -48,13 +46,13 @@ class Chart extends Component {
 					height={50}
 					options={{
 						title: {
-							display: true,
+							display: this.props.displayTitle,
 							text: 'ratings',
-							fontSize: 25
+							fontSize: 50
 						},
 						legend: {
-							display: true,
-							position: 'bottom'
+							display: this.props.displayLegend,
+							position: this.props.legendPosition
 						}
 					}}
 				/>

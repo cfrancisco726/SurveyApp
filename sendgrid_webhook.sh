@@ -1,5 +1,5 @@
 function localtunnel {
-  lt -s oasdijf --port 5000
+  lt -s asdfasf --port 5000
 }
 until localtunnel; do
 echo "localtunnel server crashed"
