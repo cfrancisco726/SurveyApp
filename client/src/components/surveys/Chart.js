@@ -54,6 +54,14 @@ class Chart extends Component {
 						legend: {
 							display: this.props.displayLegend,
 							position: this.props.legendPosition
+						},
+						layout: {
+							padding: {
+								left: 100,
+								right: 100,
+								top: 100,
+								bottom: 100
+							}
 						}
 					}}
 				/>
