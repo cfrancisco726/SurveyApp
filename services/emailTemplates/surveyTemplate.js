@@ -1,5 +1,6 @@
 const keys = require('../../config/keys');
-import emailImage from '../../client/src/images/email_header.png';
+// import emailImage from '../../client/src/images/email_header.png';
+// import emailImage from './email_pic.png';
 
 module.exports = survey => {
 	return `
