@@ -1,13 +1,20 @@
 const keys = require('../../config/keys');
+import emailImage from '../../client/src/images/email_header.png';
 
 module.exports = survey => {
 	return `
     <html>
       <body>
         <div style="text-align: center;">
-          <h3>I'd like your input</h3>
-          <p>please answer the following question:</p>
-          <p>${survey.body}</p>
+				<img
+					class="responsive-img"
+					style={{ padding: '20px' }}
+					src={emailImage}
+					alt="paper logo"
+					width="80%"
+				/>
+				<p>${survey.body}</p>
+          <h3>How was your service today?</h3>
           <div>
             <a href="${keys.redirectDomain}/api/surveys/${survey.id}/one">1</a>
           </div>
@@ -25,6 +32,7 @@ module.exports = survey => {
 					<div>
             <a href="${keys.redirectDomain}/api/surveys/${survey.id}/five">5</a>
           </div>
+					<h4>Thank You!</h4>
         </div>
       </body>
     </html>

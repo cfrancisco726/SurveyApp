@@ -6,7 +6,6 @@ import Payments from './Payments';
 class Header extends Component {
 	renderContent() {
 		switch (this.props.auth) {
-			// produced by auth reducer
 			case null:
 				return;
 			case false:
@@ -31,7 +30,6 @@ class Header extends Component {
 	}
 
 	render() {
-		// console.log(this.props);
 		return (
 			<nav>
 				<div className="" style={{ backgroundColor: '#1cb1b6' }}>
