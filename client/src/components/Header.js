@@ -34,13 +34,13 @@ class Header extends Component {
 		// console.log(this.props);
 		return (
 			<nav>
-				<div className="nav wrapper" style={{ backgroundColor: '#1cb1b6' }}>
+				<div className="" style={{ backgroundColor: '#1cb1b6' }}>
 					<Link
 						to={this.props.auth ? '/surveys' : '/'}
 						className="left-brand-log"
 						style={{ margin: '10px' }}
 					>
-						Email App
+						Mail Monkey
 					</Link>
 					<ul className="right">
 						<li>{this.renderContent()}</li>

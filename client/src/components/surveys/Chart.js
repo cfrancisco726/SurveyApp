@@ -38,7 +38,6 @@ class Chart extends Component {
 	};
 
 	render() {
-		// console.log(this.props);
 		return (
 			<div className="chart">
 				<Bar
@@ -48,7 +47,7 @@ class Chart extends Component {
 					options={{
 						title: {
 							display: this.props.displayTitle,
-							text: 'ratings',
+							text: 'Ratings',
 							fontSize: 20
 						},
 						legend: {
@@ -57,10 +56,10 @@ class Chart extends Component {
 						},
 						layout: {
 							padding: {
-								left: 100,
-								right: 100,
-								top: 100,
-								bottom: 100
+								left: 0,
+								right: 0,
+								top: 0,
+								bottom: 0
 							}
 						}
 					}}
