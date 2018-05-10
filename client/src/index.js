@@ -18,11 +18,5 @@ ReactDOM.render(
 	<Provider store={store}>
 		<App />
 	</Provider>,
-	// created a redux store an hooked up to react side of app by placing provider tag
-	// provider tag knows how to read changes from our redux store
-	// anytime the redux store gets new state produced inside it the provider will inform all its children components App and update with new state
 	document.querySelector('#root')
 );
-
-// console.log('STRIPE KEY IS', process.env.REACT_APP_STRIPE_KEY);
-// console.log('environment is', process.env.NODE_ENV);

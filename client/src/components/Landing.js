@@ -15,7 +15,6 @@ const Landing = () => {
 				</font>
 			</p>
 			<img
-				class="responsive-img"
 				style={{ padding: '20px' }}
 				src={planeImage}
 				alt="paper logo"

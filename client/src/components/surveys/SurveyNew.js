@@ -30,6 +30,4 @@ class SurveyNew extends Component {
 
 export default reduxForm({
 	form: 'surveyForm'
-	// passing in this property
 })(SurveyNew);
-// default behavior of redux form to dump values

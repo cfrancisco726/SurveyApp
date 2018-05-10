@@ -1,4 +1,3 @@
-// prod.js - production keys here
 module.exports = {
 	googleClientID: process.env.GOOGLE_CLIENT_ID,
 	googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -9,5 +8,3 @@ module.exports = {
 	sendGridKey: process.env.SEND_GRID_KEY,
 	redirectDomain: process.env.REDIRECT_DOMAIN
 };
-
-// values for keys should be pulled fromo heroku

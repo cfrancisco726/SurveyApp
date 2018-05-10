@@ -7,12 +7,11 @@ class Payments extends Component {
 	render() {
 		return (
 			<StripeCheckOut
-				name="Emaily"
+				name="MailMonkey"
 				description="$5 for 5 email credits"
 				amount={500}
 				token={token => this.props.handleToken(token)}
 				stripeKey={process.env.REACT_APP_STRIPE_KEY}
-				// when you use create react app this value gets replaced by the key
 			>
 				<button className="btn">Add credits</button>
 			</StripeCheckOut>

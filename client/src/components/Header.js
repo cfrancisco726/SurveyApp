@@ -36,7 +36,7 @@ class Header extends Component {
 					<Link
 						to={this.props.auth ? '/surveys' : '/'}
 						className="left-brand-log"
-						style={{ margin: '10px' }}
+						style={{ margin: '5px' }}
 					>
 						Mail Monkey
 					</Link>
@@ -52,7 +52,5 @@ class Header extends Component {
 function mapStateToProps({ auth }) {
 	return { auth };
 }
-// function mapStateToProps(state) {
-// 	return { auth: state.auth };
-// }
+
 export default connect(mapStateToProps)(Header);
