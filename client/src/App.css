@@ -1,0 +1,49 @@
+.landing {
+	background-color: #4e7797;
+	position: relative;
+	padding-bottom: 100px;
+}
+
+.hero {
+	width: 100%;
+	height: auto;
+	background-size: cover;
+}
+
+.title {
+	position: absolute;
+	width: 100%;
+	top: 9vw;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	color: #4e7797;
+}
+
+.title h1 {
+	font-size: 4.5vw;
+	margin-bottom: 2%;
+}
+
+.title h2 {
+	font-size: 2vw;
+	font-weight: 300;
+	margin: 0;
+}
+
+.row {
+	padding-top: 70px;
+	width: 60%;
+}
+
+.row p {
+	text-align: center;
+	color: white;
+	padding-bottom: 4vw;
+}
+
+.center {
+	float: none;
+	margin-left: 0;
+	margin-right: 0;
+}
