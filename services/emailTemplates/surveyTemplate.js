@@ -10,12 +10,6 @@ module.exports = survey => {
 					display: inline;
 				}
 			</style>
-        <div style="text-align: center;">
-				<img src="/email_pic.png"
-					style={{ padding: '20px' }}
-					alt="email pic"
-					width="80%"
-				>
 				<p>${survey.body}</p>
           <h3>How was your service today?</h3>
 					<ul id="horizontal-list">

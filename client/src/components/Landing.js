@@ -7,24 +7,6 @@ import icon3 from '../images/icon3.png';
 
 const Landing = () => {
 	return (
-		// <div
-		// 	style={{
-		// 		textAlign: 'center',
-		// 		padding: '50px'
-		// 	}}
-		// >
-		// 	<p>
-		// 		<font color="#1cb1b6" size="5">
-		// 			See how your customer rates your business
-		// 		</font>
-		// 	</p>
-		// 	<img
-		// 		style={{ padding: '20px' }}
-		// 		src={planeImage}
-		// 		alt="paper logo"
-		// 		width="80%"
-		// 	/>
-		// </div>
 		<div className="landing">
 			<div className="hero">
 				<img style={{ width: '100%' }} src={mail_hp} />
