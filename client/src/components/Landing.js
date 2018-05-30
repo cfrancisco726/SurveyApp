@@ -25,7 +25,7 @@ const Landing = () => {
 				<div className="col s12 m4 l4">
 					<div className="center">
 						<img style={{ width: '80%' }} src={icon2} />
-						<p>Add unlimited credits to create email surveys</p>
+						<p>Purchase credits to create email surveys</p>
 					</div>
 				</div>
 				<div className="col s12 m4 l4">
