@@ -12,22 +12,24 @@ class SurveyList extends Component {
 		return this.props.surveys.reverse().map(survey => {
 			return (
 				<div className="container">
-				<div className="card darken-1" key={survey._id}>
-					<div className="card-content">
-						<span className="card-title">{survey.title}</span>
-						<p>{survey.body}</p>
-						<ul>
-							<li>Sent On: {new Date(survey.dateSent).toLocaleDateString()}</li>
-							<li>
-								last responded:{' '}
-								{new Date(survey.lastResponded).toLocaleDateString()}
-							</li>
-						</ul>
+					<div className="card darken-1" key={survey._id}>
+						<div className="card-content">
+							<span className="card-title">{survey.title}</span>
+							<p>{survey.body}</p>
+							<ul>
+								<li>
+									Sent On: {new Date(survey.dateSent).toLocaleDateString()}
+								</li>
+								<li>
+									last responded:{' '}
+									{new Date(survey.lastResponded).toLocaleDateString()}
+								</li>
+							</ul>
+						</div>
+						<div className="card-action">
+							<Chart chartData={survey} />
+						</div>
 					</div>
-					<div className="card-action">
-						<Chart chartData={survey} />
-					</div>
-				</div>
 				</div>
 			);
 		});
